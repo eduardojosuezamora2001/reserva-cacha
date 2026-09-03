@@ -1,0 +1,167 @@
+{
+  "users": [
+    {
+      "id": "u-admin-1",
+      "nombre": "Administrador Principal",
+      "correo": "admin@canchas.com",
+      "passwordHash": "admin123",
+      "rol": "admin",
+      "createdAt": "2026-01-01T08:00:00.000Z"
+    },
+    {
+      "id": "u-client-1",
+      "nombre": "Carlos Gómez",
+      "correo": "carlos@cliente.com",
+      "passwordHash": "cliente123",
+      "rol": "cliente",
+      "createdAt": "2026-01-05T10:00:00.000Z"
+    },
+    {
+      "id": "u-client-2",
+      "nombre": "Mariana Rojas",
+      "correo": "mariana@cliente.com",
+      "passwordHash": "cliente123",
+      "rol": "cliente",
+      "createdAt": "2026-01-10T14:00:00.000Z"
+    }
+  ],
+  "canchas": [
+    {
+      "id": "cancha-1",
+      "nombre": "Cancha 1 - Camp Nou Sintética",
+      "descripcion": "Cancha techada de fútbol 7 con césped sintético monofilamento de 50mm, iluminación LED profesional de 400 lux, vestuarios y graderías.",
+      "direccion": "Av. Central 450, Barrio La California, San José, Costa Rica",
+      "lat": 9.9333,
+      "lng": -84.0722,
+      "horarioApertura": "07:00",
+      "horarioCierre": "23:00",
+      "precioPorHora": 28000,
+      "activa": true,
+      "imagen": "https://images.unsplash.com/photo-1529900748604-07564a03e7a6?auto=format&fit=crop&w=1200&q=80",
+      "createdAt": "2026-01-01T00:00:00.000Z",
+      "updatedAt": "2026-01-01T00:00:00.000Z"
+    },
+    {
+      "id": "cancha-2",
+      "nombre": "Cancha 2 - San Siro Fútbol 5",
+      "descripcion": "Ideal para partidos rápidos 5 vs 5. Césped con caucho amortiguador ecológico, mallas perimetrales tensadas y marcador electrónico.",
+      "direccion": "Costado Norte Parque La Sabana, San José, Costa Rica",
+      "lat": 9.9388,
+      "lng": -84.1018,
+      "horarioApertura": "08:00",
+      "horarioCierre": "23:00",
+      "precioPorHora": 22000,
+      "activa": true,
+      "imagen": "https://images.unsplash.com/photo-1574629810360-7efbbe195018?auto=format&fit=crop&w=1200&q=80",
+      "createdAt": "2026-01-02T00:00:00.000Z",
+      "updatedAt": "2026-01-02T00:00:00.000Z"
+    },
+    {
+      "id": "cancha-3",
+      "nombre": "Cancha 3 - Wembley Fútbol 8 Premium",
+      "descripcion": "Cancha al aire libre para fútbol 8 con dimensiones oficiales, zona de calentamiento, cafetería deportiva y parqueo privado vigilado.",
+      "direccion": "200m Oeste de Multiplaza Escazú, San José, Costa Rica",
+      "lat": 9.9431,
+      "lng": -84.1485,
+      "horarioApertura": "06:00",
+      "horarioCierre": "22:00",
+      "precioPorHora": 34000,
+      "activa": true,
+      "imagen": "https://images.unsplash.com/photo-1508098682722-e99c43a406b2?auto=format&fit=crop&w=1200&q=80",
+      "createdAt": "2026-01-03T00:00:00.000Z",
+      "updatedAt": "2026-01-03T00:00:00.000Z"
+    },
+    {
+      "id": "cancha-4",
+      "nombre": "Cancha 4 - Maracaná Techada",
+      "descripcion": "Estructura 100% techada apta para lluvia o sol intenso. Fútbol 6 con vestuarios de lujo y duchas con agua caliente.",
+      "direccion": "San Pedro, 100m Este de la Fuente de la Hispanidad, San José, Costa Rica",
+      "lat": 9.9328,
+      "lng": -84.0531,
+      "horarioApertura": "08:00",
+      "horarioCierre": "23:00",
+      "precioPorHora": 26000,
+      "activa": false,
+      "imagen": "https://images.unsplash.com/photo-1551958219-acbc608c6377?auto=format&fit=crop&w=1200&q=80",
+      "createdAt": "2026-01-04T00:00:00.000Z",
+      "updatedAt": "2026-01-04T00:00:00.000Z"
+    }
+  ],
+  "reservas": [
+    {
+      "id": "res-1",
+      "canchaId": "cancha-1",
+      "userId": "u-client-1",
+      "nombreSolicitante": "Carlos Gómez",
+      "correoSolicitante": "carlos@cliente.com",
+      "telefonoSolicitante": "+506 8888-1111",
+      "fecha": "2026-09-04",
+      "horaInicio": "18:00",
+      "horaFin": "19:00",
+      "estado": "confirmada",
+      "notas": "Traemos balones propios",
+      "createdAt": "2026-09-01T12:00:00.000Z",
+      "updatedAt": "2026-09-01T12:00:00.000Z"
+    },
+    {
+      "id": "res-2",
+      "canchaId": "cancha-1",
+      "userId": "u-client-2",
+      "nombreSolicitante": "Mariana Rojas",
+      "correoSolicitante": "mariana@cliente.com",
+      "telefonoSolicitante": "+506 8888-2222",
+      "fecha": "2026-09-04",
+      "horaInicio": "20:00",
+      "horaFin": "21:00",
+      "estado": "confirmada",
+      "notas": "Torneo interempresarial",
+      "createdAt": "2026-09-02T10:30:00.000Z",
+      "updatedAt": "2026-09-02T10:30:00.000Z"
+    },
+    {
+      "id": "res-3",
+      "canchaId": "cancha-2",
+      "userId": null,
+      "nombreSolicitante": "Esteban Vega (Visitante)",
+      "correoSolicitante": "esteban.vega@gmail.com",
+      "telefonoSolicitante": "+506 7777-3333",
+      "fecha": "2026-09-04",
+      "horaInicio": "19:00",
+      "horaFin": "20:00",
+      "estado": "pendiente",
+      "notas": "Solicitud enviada por WhatsApp. Consulta por chalecos.",
+      "createdAt": "2026-09-03T09:15:00.000Z",
+      "updatedAt": "2026-09-03T09:15:00.000Z"
+    },
+    {
+      "id": "res-4",
+      "canchaId": "cancha-3",
+      "userId": "u-client-1",
+      "nombreSolicitante": "Carlos Gómez",
+      "correoSolicitante": "carlos@cliente.com",
+      "telefonoSolicitante": "+506 8888-1111",
+      "fecha": "2026-09-05",
+      "horaInicio": "10:00",
+      "horaFin": "12:00",
+      "estado": "confirmada",
+      "notas": "Partido amistoso 2 horas",
+      "createdAt": "2026-09-02T16:00:00.000Z",
+      "updatedAt": "2026-09-02T16:00:00.000Z"
+    },
+    {
+      "id": "res-5",
+      "canchaId": "cancha-1",
+      "userId": null,
+      "nombreSolicitante": "Alejandro Castro",
+      "correoSolicitante": "acastro@hotmail.com",
+      "telefonoSolicitante": "+506 8555-4444",
+      "fecha": "2026-09-05",
+      "horaInicio": "17:00",
+      "horaFin": "18:00",
+      "estado": "pendiente",
+      "notas": "Coordinando pago de seña",
+      "createdAt": "2026-09-03T11:00:00.000Z",
+      "updatedAt": "2026-09-03T11:00:00.000Z"
+    }
+  ]
+}
