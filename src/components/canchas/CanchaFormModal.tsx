@@ -28,6 +28,7 @@ import {
   FootballIcon,
   Tick02Icon,
 } from "@hugeicons/core-free-icons"
+import { InteractiveMapPicker } from "@/components/canchas/InteractiveMapPicker"
 
 const canchaSchema = z.object({
   nombre: z.string().min(3, "El nombre debe tener al menos 3 caracteres"),
@@ -160,9 +161,25 @@ export function CanchaFormModal({
   }
 
   const applyPreset = (preset: (typeof UBICACION_PRESETS)[0]) => {
-    setValue("lat", preset.lat)
-    setValue("lng", preset.lng)
-    setValue("direccion", preset.direccion)
+    setValue("lat", preset.lat, { shouldValidate: true, shouldDirty: true })
+    setValue("lng", preset.lng, { shouldValidate: true, shouldDirty: true })
+    setValue("direccion", preset.direccion, { shouldValidate: true, shouldDirty: true })
+  }
+
+  const handleMapAddressLookup = async (newLat: number, newLng: number) => {
+    try {
+      const res = await fetch(
+        `https://nominatim.openstreetmap.org/reverse?format=jsonv2&lat=${newLat}&lon=${newLng}&accept-language=es`
+      )
+      if (res.ok) {
+        const data = await res.json()
+        if (data && data.display_name) {
+          setValue("direccion", data.display_name, { shouldValidate: true, shouldDirty: true })
+        }
+      }
+    } catch {
+      // Si falla la geocodificación inversa, se mantienen las coordenadas sin interrumpir al usuario
+    }
   }
 
   return (
@@ -213,14 +230,14 @@ export function CanchaFormModal({
             />
           </div>
 
-          {/* Integración Google Maps y Ubicación */}
+          {/* Integración de Mapa Interactivo y Ubicación */}
           <div className="p-3 rounded-xl border border-border bg-muted/30 space-y-3">
             <div className="flex items-center justify-between">
               <div className="flex items-center gap-1.5 text-xs font-semibold text-foreground">
                 <HugeiconsIcon icon={Location01Icon} className="size-4 text-primary" />
-                <span>Ubicación y Google Maps</span>
+                <span>Ubicación y Mapa Interactivo</span>
               </div>
-              <span className="text-[10px] text-muted-foreground">Places & Coordenadas</span>
+              <span className="text-[10px] text-muted-foreground">Haz clic en el mapa para marcar</span>
             </div>
 
             {/* Presets rápidos */}
@@ -246,7 +263,7 @@ export function CanchaFormModal({
               </Label>
               <Input
                 id="c-direccion"
-                placeholder="Dirección formateada por Google Places..."
+                placeholder="Dirección o punto de referencia..."
                 {...register("direccion")}
                 className="text-xs h-8 bg-background"
               />
@@ -283,19 +300,19 @@ export function CanchaFormModal({
               </div>
             </div>
 
-            {/* Preview interactivo de mapa */}
-            {currentLat && currentLng && (
-              <div className="rounded-lg overflow-hidden border border-border h-36 relative">
-                <iframe
-                  title="Preview de mapa"
-                  src={`https://maps.google.com/maps?q=${currentLat},${currentLng}&hl=es&z=15&output=embed`}
-                  width="100%"
-                  height="100%"
-                  style={{ border: 0 }}
-                  className="grayscale-25"
-                />
-              </div>
-            )}
+            {/* Mapa Interactivo con selección por click o arrastre */}
+            <div className="space-y-1">
+              <InteractiveMapPicker
+                lat={Number(currentLat) || 9.9333}
+                lng={Number(currentLng) || -84.0722}
+                height={200}
+                onChange={(newLat, newLng) => {
+                  setValue("lat", newLat, { shouldValidate: true, shouldDirty: true })
+                  setValue("lng", newLng, { shouldValidate: true, shouldDirty: true })
+                }}
+                onAddressLookup={handleMapAddressLookup}
+              />
+            </div>
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
